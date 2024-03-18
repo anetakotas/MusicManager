@@ -6,6 +6,7 @@ package com.mycompany.musicmanager;
 
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -16,47 +17,93 @@ public class MusicGUI extends javax.swing.JFrame {
     String songNameSelected;
     int songIndexSelected;
     DefaultListModel listModel;
-    ArrayList<Playlist> playlists;
     ArrayList<Song> songs = new ArrayList<Song>();
+    ArrayList<Song> liked = new ArrayList<Song>();
+    ArrayList<Song> pop = new ArrayList<Song>();
+    ArrayList<Song> rock = new ArrayList<Song>();
+    
     /**
      * Creates new form MusicGUI
      */
     
     
     public MusicGUI() {
-        initComponents();
-        
-        playlists.add(new GenrePlaylist);
-        playlists.add(new LikedPlaylist);
-        
-       
+        initComponents();  
         listModel = new DefaultListModel();
 //        listModel.addElement("song 1");
 //        listModel.addElement("song 2");
 //        listModel.addElement("song 3");
+
+        ArrayList<ArrayList> playlists = new ArrayList<ArrayList>();
+        playlists.add(songs);
+        playlists.add(liked);
+        playlists.add(pop);
+        playlists.add(rock);
         
         songs.add(new Song("nie wiem", "bdbd", "2:33", "pop"));
         songs.add(new Song("nie wiem 2", "bdbdd", "2:63", "pop"));
         songs.add(new Song("song 3", "sdf", "7:33", "pop"));
         
-        reloadList();
+        liked.add(new Song("song LIKED", "sdf", "7:33", "pop"));
         
+        pop.add(new Song("song POP", "sdf", "7:33", "pop"));
+        
+        rock.add(new Song("song ROCK", "sdf", "7:33", "rock"));
+        
+        String currentPlaylist = jComboBox1.getSelectedItem().toString();
+        
+        
+        
+        switch(currentPlaylist) {
+            case "All Songs":
+                    reloadList("All Songs");
+                    break;
+            case "Liked Songs":
+                    reloadList("Liked Songs");
+                    break;
+            case "Pop Songs":
+                    reloadList("Pop Songs");
+                    break;
+            case "Rock Songs":
+                    reloadList("Rock Songs");
+                    break;
+        }
+                
         listDisplay.setModel(listModel);
         
         System.out.println(songs);
         
         
         listDisplay.getSelectionModel().addListSelectionListener(x -> {
-            songNameSelected = listDisplay.getSelectedValue();
+//            songNameSelected = listDisplay.getSelectedValue().toString();
             songIndexSelected = listDisplay.getSelectedIndex();
-
         });
     }
     
-    public void reloadList() {
-//        listModel.clear();
-        for (Song song : songs) {
-            listModel.addElement(song);
+    public void reloadList(String listName) {
+        listModel.clear();
+    
+        switch(listName) {
+            case "All Songs":
+                for (Song song : songs) {
+                    listModel.addElement(song);
+                }
+            break;
+            case "Liked Songs":
+                for (Song song : liked) {
+                    listModel.addElement(song);
+                }        
+            break;
+            case "Pop Songs":
+                for (Song song : pop) {
+                    listModel.addElement(song);
+                }
+                break;
+            case "Rock Songs":
+                for (Song song : rock) {
+                    listModel.addElement(song);
+                }        
+                break;
         }
     }
     
@@ -117,7 +164,7 @@ public class MusicGUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(listDisplay);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Songs", "Liked Songs", "Pop Songs", "Rock Songs" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -257,7 +304,7 @@ public class MusicGUI extends javax.swing.JFrame {
 //        new AddSongGUI().setVisible(true);
           songs.add(new Song("button song", "sdf", "7:33", "pop"));
           listModel.clear();
-          reloadList();
+
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -274,6 +321,8 @@ public class MusicGUI extends javax.swing.JFrame {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
+        String currentPlaylist = jComboBox1.getSelectedItem().toString();
+        reloadList(currentPlaylist);
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

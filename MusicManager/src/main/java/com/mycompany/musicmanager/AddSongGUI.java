@@ -132,7 +132,7 @@ public class AddSongGUI extends javax.swing.JFrame {
         duration = addDuration.getText();
         Song song = new Song(title, genre, author, duration);
         mainList.songs.add(song);
-        mainList.reloadList();
+//        mainList.reloadList();
         
         System.out.println(mainList.songs);
         //songs.add(song);
