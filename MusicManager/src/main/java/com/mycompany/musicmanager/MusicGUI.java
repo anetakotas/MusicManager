@@ -4,6 +4,7 @@
  */
 package com.mycompany.musicmanager;
 
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
 /**
@@ -15,6 +16,8 @@ public class MusicGUI extends javax.swing.JFrame {
     String songNameSelected;
     int songIndexSelected;
     DefaultListModel listModel;
+    ArrayList<Playlist> playlists;
+    ArrayList<Song> songs = new ArrayList<Song>();
     /**
      * Creates new form MusicGUI
      */
@@ -23,8 +26,25 @@ public class MusicGUI extends javax.swing.JFrame {
     public MusicGUI() {
         initComponents();
         
+        playlists.add(new GenrePlaylist);
+        playlists.add(new LikedPlaylist);
+        
+       
         listModel = new DefaultListModel();
+//        listModel.addElement("song 1");
+//        listModel.addElement("song 2");
+//        listModel.addElement("song 3");
+        
+        songs.add(new Song("nie wiem", "bdbd", "2:33", "pop"));
+        songs.add(new Song("nie wiem 2", "bdbdd", "2:63", "pop"));
+        songs.add(new Song("song 3", "sdf", "7:33", "pop"));
+        
+        reloadList();
+        
         listDisplay.setModel(listModel);
+        
+        System.out.println(songs);
+        
         
         listDisplay.getSelectionModel().addListSelectionListener(x -> {
             songNameSelected = listDisplay.getSelectedValue();
@@ -32,6 +52,15 @@ public class MusicGUI extends javax.swing.JFrame {
 
         });
     }
+    
+    public void reloadList() {
+//        listModel.clear();
+        for (Song song : songs) {
+            listModel.addElement(song);
+        }
+    }
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,6 +71,15 @@ public class MusicGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        addTitle = new javax.swing.JTextField();
+        addAuthor = new javax.swing.JTextField();
+        addDuration = new javax.swing.JTextField();
+        addGenre = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listDisplay = new javax.swing.JList<>();
@@ -56,6 +94,17 @@ public class MusicGUI extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setText("New Song Details:");
+
+        jLabel5.setText("Title:");
+
+        jLabel6.setText("Author:");
+
+        jLabel7.setText("Duration:");
+
+        jLabel8.setText("Genre:");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,6 +152,11 @@ public class MusicGUI extends javax.swing.JFrame {
         jButton4.setText("⤵ Move");
         jButton4.setMaximumSize(new java.awt.Dimension(96, 23));
         jButton4.setMinimumSize(new java.awt.Dimension(96, 23));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Exit");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -170,7 +224,7 @@ public class MusicGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton5)
@@ -198,26 +252,34 @@ public class MusicGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+//        new AddSongGUI().setVisible(true);
+          songs.add(new Song("button song", "sdf", "7:33", "pop"));
+          listModel.clear();
+          reloadList();
+    }//GEN-LAST:event_addButtonActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_addButtonActionPerformed
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        listModel.addElement("new");
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,7 +317,11 @@ public class MusicGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField addAuthor;
     private javax.swing.JButton addButton;
+    private javax.swing.JTextField addDuration;
+    private javax.swing.JTextField addGenre;
+    private javax.swing.JTextField addTitle;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -265,6 +331,11 @@ public class MusicGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;

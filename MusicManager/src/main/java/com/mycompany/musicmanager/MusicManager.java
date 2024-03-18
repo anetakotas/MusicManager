@@ -12,6 +12,11 @@ package com.mycompany.musicmanager;
 public class MusicManager {
 
     public static void main(String[] args) {
+        Playlist general = new Playlist();
+        Playlist genre_one = new Playlist();
+        Playlist genre_two = new Playlist();
+        Playlist liked = new Playlist();
+        MusicGUI gui = new MusicGUI(general, genre_one, genre_two);
         MusicGUI gui = new MusicGUI();
         gui.setVisible(true);
         gui.setLocationRelativeTo(null);

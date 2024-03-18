@@ -9,9 +9,10 @@ package com.mycompany.musicmanager;
  * @author Aneta
  */
 public class Song {
-    String title, genre, author, duration;
+    String title, genre, author;
+    double duration;
 
-    public Song(String title, String author, String duration, String genre) {
+    public Song(String title, String genre, String author, double duration) {
         this.title = title;
         this.genre = genre;
         this.author = author;
@@ -30,7 +31,7 @@ public class Song {
         this.author = author;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(double duration) {
         this.duration = duration;
     }
 
@@ -46,13 +47,9 @@ public class Song {
         return author;
     }
 
-    public String getDuration() {
+    public double getDuration() {
         return duration;
     }
     
-    @Override
-    public String toString() {
-        return title + ", " + author + ", " + duration + ", " + genre;
-    }
     
 }

@@ -20,7 +20,7 @@ public class Playlist {
         this.songsAmount = songsAmount;
     }
     
-    public void addSong(String title, String genre, String author, String duration) {
+    public void addSong(String title, String genre, String author, double duration) {
         Song song = new Song(title, genre, author, duration);
         allSongs.add(song);
     }
