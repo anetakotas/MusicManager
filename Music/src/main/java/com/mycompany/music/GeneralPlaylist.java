@@ -8,19 +8,23 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author necia
+ * @author Aneta Kotas, HCCOMPE2
+ * @date March 2024
+ * For Data Structures and Algorithms class.
  */
+//General playlist creates a skeleton for general playlist list and it uses playlist interface, which guarantees that all neccessairy functions will be in the class
 public class GeneralPlaylist implements PlaylistInterface {
     private String playlistName;
     private int songsAmount;
     public ArrayList<Song> general = new ArrayList<Song>();
 
+    //Deletes song from a playlist
     @Override
     public void deleteSong(int index) {
         general.remove(index);
     }
 
+    //Searches song in a playlist and returns a different message depending on the input
     @Override
     public boolean searchSong(String title) {
         boolean found = false;
@@ -30,34 +34,31 @@ public class GeneralPlaylist implements PlaylistInterface {
                 found = true;
             }
         }
+        if(found == false) {
+            JOptionPane.showMessageDialog(null, "Not found!");
+        }
         return found;
     }
 
+    //Returns size of the playlist
     @Override
     public int size() {
         return general.size();
     }
 
-    @Override
-    public void repeat() {
-        JOptionPane.showMessageDialog(null, "Now playlist is set on repeat!");
-    }
-
-    @Override
-    public void moveTo(String playlistName) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+    //Adds a new song to the playlist
     @Override
     public void addSong(Song song) {
         general.add(song);
     }
     
+    //Returns all songs in the playlist
     @Override
     public ArrayList<Song> getSongs() {
         return general;
     }
     
+    //Returns one song from a playlist according to the index
     @Override
     public Song getSong(int index) {
         return general.get(index);

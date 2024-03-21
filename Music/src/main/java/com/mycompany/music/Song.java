@@ -5,9 +5,11 @@
 package com.mycompany.music;
 
 /**
- *
- * @author necia
+ * @author Aneta Kotas, HCCOMPE2
+ * @date March 2024
+ * For Data Structures and Algorithms class.
  */
+//Song object class. It defines all neccesairy methods for song objects which are then added to the playlists
 public class Song {
     String title, author, genre;
     boolean liked;
@@ -51,8 +53,9 @@ public class Song {
         return liked;
     }
     
+    //Overrides the method to make the string look a certain way
     @Override
     public String toString() {
-        return title + " - " + author + " - " + genre + " - " + liked;
+        return title + " - " + author + " - " + genre;
     }
 }

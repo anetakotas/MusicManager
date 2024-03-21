@@ -6,9 +6,11 @@
 package com.mycompany.music;
 
 /**
- *
- * @author necia
+ * @author Aneta Kotas, HCCOMPE2
+ * @date March 2024
+ * For Data Structures and Algorithms class.
  */
+//Method which runs the program and makes GUI visible to the user
 public class Music {
 
     public static void main(String[] args) {

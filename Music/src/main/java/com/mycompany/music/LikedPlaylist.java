@@ -8,24 +8,29 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author necia
+ * @author Aneta Kotas, HCCOMPE2
+ * @date March 2024
+ * For Data Structures and Algorithms class.
  */
+//Liked playlist creates a skeleton for liked playlist list and it uses playlist interface, which guarantees that all neccessairy functions will be in the class
 public class LikedPlaylist implements PlaylistInterface {
     private String playlistName;
     private int songsAmount;
     public ArrayList<Song> liked = new ArrayList<Song>();
 
+    //Adds song to the liked list
     @Override
     public void addSong(Song song) {
         liked.add(song);
     }
 
+    //Removes chosen song from a list
     @Override
     public void deleteSong(int index) {
         liked.remove(index);
     }
 
+    //Searches song in a playlist and returns a different message depending on the input
     @Override
     public boolean searchSong(String title) {
         boolean found = false;
@@ -35,29 +40,25 @@ public class LikedPlaylist implements PlaylistInterface {
                 found = true;
             }
         }
+        if(found == false) {
+            JOptionPane.showMessageDialog(null, "Not found!");
+        }
         return found;
     }
 
+    //Returns size of the playlist
     @Override
     public int size() {
         return liked.size();
     }
 
-    @Override
-    public void repeat() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void moveTo(String playlistName) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+    //Returns all songs in the playlist
     @Override
     public ArrayList<Song> getSongs() {
         return liked;
     }
 
+    //Returns single particular song from the playlist
     @Override
     public Song getSong(int index) {
         return liked.get(index);

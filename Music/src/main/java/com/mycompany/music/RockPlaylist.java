@@ -8,24 +8,29 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author necia
+ * @author Aneta Kotas, HCCOMPE2
+ * @date March 2024
+ * For Data Structures and Algorithms class.
  */
+//Rock playlist creates a skeleton for rock playlist list and it uses playlist interface, which guarantees that all neccessairy functions will be in the class
 public class RockPlaylist implements PlaylistInterface {
     private String playlistName;
     private int songsAmount;
     public ArrayList<Song> rock = new ArrayList<Song>();
     
+    //Adds a new song to the list
     @Override
     public void addSong(Song song) {
         rock.add(song);
     }
 
+    //Deletes chosen song
     @Override
     public void deleteSong(int index) {
         rock.remove(index);
     }
 
+    //Iterates through entire playlist looking for the song, then tells user the outcome
     @Override
     public boolean searchSong(String title) {
         boolean found = false;
@@ -35,29 +40,25 @@ public class RockPlaylist implements PlaylistInterface {
                 found = true;
             }
         }
+        if(found == false) {
+            JOptionPane.showMessageDialog(null, "Not found!");
+        }
         return found;
     }
 
+    //Returns playlists size
     @Override
     public int size() {
         return rock.size();
     }
 
-    @Override
-    public void repeat() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void moveTo(String playlistName) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+    //Returns whole playlist
     @Override
     public ArrayList<Song> getSongs() {
         return rock;
     }
 
+    //Returns chosen song
     @Override
     public Song getSong(int index) {
         return rock.get(index);

@@ -8,24 +8,29 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author necia
+ * @author Aneta Kotas, HCCOMPE2
+ * @date March 2024
+ * For Data Structures and Algorithms class.
  */
+//Pop playlist creates a skeleton for pop playlist list and it uses playlist interface, which guarantees that all neccessairy functions will be in the class
 public class PopPlaylist implements PlaylistInterface {
     private String playlistName;
     private int songsAmount;
     public ArrayList<Song> pop = new ArrayList<Song>();
     
+    //Adds song to the list
     @Override
     public void addSong(Song song) {
         pop.add(song);
     }
 
+    //Deletes song from the playlist
     @Override
     public void deleteSong(int index) {
         pop.remove(index);
     }
 
+    //Iterates through entire playlist looking for the song, then tells user the outcome
     @Override
     public boolean searchSong(String title) {
         boolean found = false;
@@ -35,29 +40,25 @@ public class PopPlaylist implements PlaylistInterface {
                 found = true;
             }
         }
+        if(found == false) {
+            JOptionPane.showMessageDialog(null, "Not found!");
+        }
         return found;
     }
 
+    //Returns size of the playlist
     @Override
     public int size() {
         return pop.size();
     }
 
-    @Override
-    public void repeat() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void moveTo(String playlistName) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+    //Returns the list
     @Override
     public ArrayList<Song> getSongs() {
         return pop;
     }
 
+    //Returns chosen song from the list
     @Override
     public Song getSong(int index) {
         return pop.get(index);
